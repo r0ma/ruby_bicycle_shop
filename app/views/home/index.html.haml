@@ -1,0 +1,43 @@
+.row
+  .col-lg-3
+    %h4.my-4 Category
+    .list-group{style: "margin-bottom: 40px;"}
+      - @categories.each do |c|
+        %a.list-group-item{ class: active_class(c, params, :category), href: filter_params(category: c.id, gander: params.dig(:filter, :gander)) }
+          = c.title
+    %h4.my-4 Gander
+    .list-group
+      - @ganders.each do |g|
+        %a.list-group-item{ class: active_class(g, params, :gander), href: filter_params(gander: g.id, category: params.dig(:filter, :category)) }
+          = g.title
+    
+    %br
+    = link_to 'Clear all filters', root_path, class: 'list-group-item'
+      
+
+  / /.col-lg-3
+  .col-lg-9.mt-4
+    .row
+      - @bikes.each do |b|
+        .col-lg-4.col-md-6.mb-4
+          .card.h-100
+            %a{href: "#"}
+              = image_tag(b.picture, class: "card-img-top")
+            .card-body
+              %h4.card-title
+                %a{href: "#"}
+                  = b.title
+              %h5
+                $#{b.price}
+              %p.card-text
+                = raw(b.description)
+              %p.text-secondary
+                Category: 
+                = b.category.title
+              %p.text-secondary
+                Gander: 
+                = b.gander.title
+            .card-footer
+              %small.text-muted
+                = raw(b.rating.times.map { '★' }.join(' '))
+                = raw((5 - b.rating).times.map { '☆' }.join(' '))

@@ -1,0 +1,15 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+  .container
+    %a.navbar-brand{:href => "#"} Bicycle Shop
+    %button.navbar-toggler{"aria-controls" => "navbarResponsive", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarResponsive", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarResponsive.collapse.navbar-collapse
+      %ul.navbar-nav.ml-auto
+        %li{:class => "nav-item #{request.path == '/' ? 'active' : ''}"}
+          = link_to 'Головна', root_path, class: 'nav-link'
+        %li{:class => "nav-item #{request.path == '/about' ? 'active' : ''}"}
+          = link_to 'Про нас', home_about_path, class: 'nav-link'
+        %li{:class => "nav-item #{request.path == '/services' ? 'active' : ''}"}
+          = link_to 'Послуги', home_services_path, class: 'nav-link'
+        %li{:class => "nav-item #{request.path == '/contact' ? 'active' : ''}"}
+          = link_to 'Контактна інформація', home_contact_path, class: 'nav-link'
